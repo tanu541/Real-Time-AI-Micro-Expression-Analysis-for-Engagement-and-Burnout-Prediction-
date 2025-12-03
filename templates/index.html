@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Micro-Expression Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f4f7fa;
+            color: #333;
+        }
+        header {
+            background: #3f51b5;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+            gap: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 450px;
+            flex: 1 1 400px;
+        }
+        .card h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        video {
+            width: 100%;
+            border-radius: 12px;
+            border: 3px solid #3f51b5;
+        }
+        .prediction {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 10px 0 5px;
+        }
+        .confidence {
+            text-align: center;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        ul#prediction-list {
+            list-style: none;
+            padding: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        ul#prediction-list li {
+            padding: 6px 10px;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        li.positive { background: #d4edda; color: #155724; }
+        li.neutral { background: #fff3cd; color: #856404; }
+        li.negative { background: #f8d7da; color: #721c24; }
+        canvas#trendChart {
+            width: 100%;
+            max-height: 250px;
+        }
+        .alert {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        .alert.engaged { background: #d4edda; color: #155724; }
+        .alert.warning { background: #fff3cd; color: #856404; }
+        .alert.burnout { background: #f8d7da; color: #721c24; }
+
+        @media(max-width: 900px){
+            main { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    AI Micro-Expression Analysis Dashboard
+</header>
+
+<main>
+    <!-- Webcam and Prediction -->
+    <div class="card">
+        <h3>Live Camera Feed</h3>
+        <video id="video" autoplay></video>
+        <p class="prediction" id="prediction">Expression: --</p>
+        <p class="confidence" id="confidence">Confidence: --%</p>
+        <div class="alert" id="alert">Status: --</div>
+        <h4>Recent Predictions:</h4>
+        <ul id="prediction-list"></ul>
+    </div>
+
+    <!-- Engagement / Burnout Trend -->
+    <div class="card">
+        <h3>Engagement / Burnout Trend</h3>
+        <canvas id="trendChart"></canvas>
+    </div>
+</main>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/static/script.js"></script>
+
+</body>
+</html>
